@@ -5,9 +5,10 @@ function UserCard() {
 
   const { username } = useParams();
 
+  console.log("What is user", username);
   const GET_MESSAGES = gql`
   query GetMessages {
-    user (username: ${username}) {
+    user (username: "${username}") {
       username
       messages {
         body
@@ -16,12 +17,12 @@ function UserCard() {
   }
   `;
 
+
   const { loading, error, data } = useQuery(GET_MESSAGES);
 
   if (loading) return <h1>Loading...</h1>;
   if (error) return <h1>Error: {error.message}</h1>;
 
-  console.log('UserCard data is ', data);
   return (
     <div className="UserCard">
       <h1>User: {username}</h1>
