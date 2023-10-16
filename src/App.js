@@ -1,12 +1,15 @@
 import './App.css';
+import { BrowserRouter } from "react-router-dom";
+import RoutesList from "./RoutesList";
 
-import DisplayUsers from './DisplayUsers';
 
 function App() {
 
   return (
     <div className="App">
-      <DisplayUsers />
+      <BrowserRouter>
+        <RoutesList />
+      </BrowserRouter>
     </div>
   );
 }
