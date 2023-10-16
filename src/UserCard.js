@@ -1,5 +1,5 @@
 import { useQuery, gql } from '@apollo/client';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 
 function UserCard() {
 
@@ -10,6 +10,8 @@ function UserCard() {
   query GetMessages {
     user (username: "${username}") {
       username
+      first_name
+      last_name
       messages {
         body
       }
@@ -26,7 +28,10 @@ function UserCard() {
   return (
     <div className="UserCard">
       <h1>User: {username}</h1>
+      <h4>First name: {data.user.first_name}</h4>
+      <h4>Last name: {data.user.last_name}</h4>
       <h2>Messages: </h2>
+      <Link to={`/users/${username}/addmessage`}>Add a Message</Link>
       {data.user.messages.map(message => (
         <p>{message.body}</p>
       ))}

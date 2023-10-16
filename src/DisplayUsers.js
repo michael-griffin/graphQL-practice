@@ -18,23 +18,19 @@ function DisplayUsers() {
 
   const { loading, error, data } = useQuery(GET_USERS);
 
-
   if (loading) return <h1>Loading...</h1>;
   if (error) return <h1>Error: {error.message}</h1>;
-
-  console.log(data);
 
   return (
     <div className="DisplayUsers">
       {data.users.map(user => (
-        <div>
+        <div key={user.username}>
           <span>{user.username}</span>
           <Link to={`/users/${user.username}`}> <p>Details</p> </Link>
         </div>
       ))}
     </div>
   );
-
 };
 
 export default DisplayUsers;
